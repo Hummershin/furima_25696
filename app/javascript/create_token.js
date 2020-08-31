@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const params = path.replace(/items/g, '').replace(/transactions/g, '').replace(/\//g, '');
 
   if (path.includes("items") && path.includes("transactions") && /^([1-9]\d*|0)$/.test(params)) {
-    const PAYJP_PK = process.env.PAYJP_PK
+      const PAYJP_PK = process.env.PAYJP_PK
     Payjp.setPublicKey(PAYJP_PK);
     const form = document.getElementById("charge-form");
 

@@ -12,13 +12,13 @@ class Item < ApplicationRecord
   end
 
   # 金額が半角であるか検証
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: '金額は半角で入力してください' }
 
   # 金額の範囲
-  validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
+  validates_inclusion_of :price, in: 300..9_999_999, message: '販売価格は300~9,999,999円の範囲で入力してください'
 
   # 選択関係で「---」のままになっていないか検証
-  with_options numericality: { other_than: 0, message: 'Select' } do
+  with_options numericality: { other_than: 0, message: 'を選択してください' } do
     validates :category_id
     validates :sales_status_id
     validates :shipping_fee_status_id
