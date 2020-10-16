@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
   end
 
   def create
+    
+    # binding.pry
+    
     @item = Item.new(item_params)
     # バリデーションで問題があれば、保存はされず「商品出品画面」を再描画
     if @item.valid?
@@ -22,6 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user )
   end
 
   def edit
@@ -44,7 +49,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :image,
       :name,
       :info,
       :category_id,
@@ -52,7 +56,8 @@ class ItemsController < ApplicationController
       :shipping_fee_status_id,
       :prefecture_id,
       :scheduled_delivery_id,
-      :price
+      :price,
+      images: []
     ).merge(user_id: current_user.id)
   end
 

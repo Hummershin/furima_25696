@@ -10,7 +10,7 @@ class PayForm
     validates :prefecture, numericality: { other_than: 0, message: 'を選択してください' }
     validates :city
     validates :addresses
-    validates :phone_number, length: { maximum: 11, message: '長すぎまっせ！' }
+    validates :phone_number, length: { maximum: 11, message: 'が長すぎます' }
     # 電話番号は入力フォームで制限してますが、一応つけています。
     validates :user_id
   end

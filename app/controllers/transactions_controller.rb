@@ -9,6 +9,9 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    
+    binding.pry
+    
     @item_transaction = PayForm.new(item_transaction_params)
     if @item_transaction.valid?
       pay_item

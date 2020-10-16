@@ -1,6 +1,6 @@
-class MessageChannel < ApplicationCable::Channel
+class CommentsChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+     stream_from "connect_slack_channel"
   end
 
   def unsubscribed

@@ -1,16 +1,14 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const path = location.pathname
-  const pathRegex = /^(?=.*item)(?=.*edit)/
-  if (path === "/items/new" || path === "/items" || pathRegex.test(path)) {
-    //    出品ページの場合　||　出品ページの検証にかかった場合 || 商品編集の場合
-    const priceInput = document.getElementById("item-price");
-    const addTaxDom = document.getElementById("add-tax-price");
-    const profitDom = document.getElementById("profit");
+window.addEventListener("load", function(){
 
-    priceInput.addEventListener("input", () => {
-      const inputValue = document.getElementById("item-price").value;
-        addTaxDom.innerHTML = Math.floor(inputValue * 0.1).toLocaleString();
-        profitDom.innerHTML = Math.floor(inputValue * 0.9).toLocaleString();
-    })
-  }
-});
+  const price_field = document.getElementById("item-price")
+  price_field.addEventListener("keyup", function(){
+    let price = this.value;
+    let fee = Math.floor(price * 0.1) //販売手数料
+    let profit = Math.floor(price - fee) //売買利益
+
+    const fee_field = document.getElementById("add-tax-price") //販売手数料が表示される部分
+    const profit_field = document.getElementById("profit") //売買利益が表示される部分
+    fee_field.textContent = fee;
+    profit_field.textContent = profit;
+  })
+})
