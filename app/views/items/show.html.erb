@@ -7,7 +7,7 @@
       <%= @item.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
+      <%= image_tag @item.images.first ,class:"item-box-img" %>
       <% if @item.item_transaction != nil %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
@@ -75,16 +75,17 @@
   </div>
   <%# /商品の概要 %>
 
-  <div class="comment-box">
+  <div class="comment-box" id="comment-box">
     <div id="comments">
-      <% @comments.each do |comment| %>
+      <% @comments.each do |comment| %> 
         <div class="comment">
-          <div class="user-info">comment.user.nickname</div>
-          <p>comment.content</p>
+          <div class="user-info"><%= comment.user.nickname %></div>
+          <p><%= comment.content%></p>
         </div>
-      <% end %>
+      <% end %> 
     </div>
 
+    <% if user_signed_in? %>
     <%= form_with model: [@item, @comment] do |f| %>
         <%# <textarea class="comment-text"></textarea> %>
         <%= f.text_area :content, class: "comment-text"%>
@@ -97,6 +98,7 @@
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
           <span>コメントする<span>
         <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="links">

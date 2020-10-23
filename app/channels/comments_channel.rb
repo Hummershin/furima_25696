@@ -1,6 +1,7 @@
 class CommentsChannel < ApplicationCable::Channel
   def subscribed
-     stream_from "connect_slack_channel"
+    @item = Item.find(params[:item_id]) # 変更
+    stream_for @item                    # 変更 stream_fromではなくstream_for
   end
 
   def unsubscribed

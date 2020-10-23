@@ -12,10 +12,12 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       // 表示する画像を生成
       const blobImage = document.createElement('img')
       blobImage.setAttribute('src', blob)
+      blobImage.setAttribute('class', 'preview')
+      blobImage.setAttribute('height', '150')
 
       // ファイル選択ボタンを生成
       const inputHTML = document.createElement('input')
-      inputHTML.setAttribute('id', `item-image_${imageElementNum}`)
+      inputHTML.setAttribute('class', `item-image_${imageElementNum}`)
       inputHTML.setAttribute('name', 'item[images][]')
       inputHTML.setAttribute('type', 'file')
 
@@ -33,6 +35,14 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
     }
 
     document.getElementById('item-image').addEventListener('change', (e) => {
+      const imageContent = document.getElementsByClassName('preview');
+      // 既存のpreviewを削除する
+      if (imageContent.length != 0) {
+        images = Array.from(imageContent);
+        images.forEach(image => {
+          image.remove();
+        });
+      }
       let file = e.target.files[0];
       let blob = window.URL.createObjectURL(file);
 

@@ -1,17 +1,18 @@
 class CommentsController < ApplicationController
   def create
-    @item = Item.find(params[:item_id])
-    @comment = Comment.new(comment_params)
-
+    # 追加
+    @item = Item.find(params[:item_id]) 
+    @comment = Comment.new(comments_params)
     if @comment.save
-      ActionCable.server.broadcast "connect_slack_channel", {content: @comment.content, user_name: @comment.user.nickname}
+      # 変更
+      CommentsChannel.broadcast_to @item, { comment: @comment, user: @comment.user }  
     end
   end
 
   private
-  def comment_params
+
+  def comments_params
     params.require(:comment).permit(:content)
-      .merge(user_id: current_user.id)
-      .merge(item_id: @item.id)
+      .merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end

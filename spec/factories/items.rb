@@ -11,7 +11,7 @@ FactoryBot.define do
     association :user
     
     after(:build) do |item|
-      item.images.attach(io: File.open('spec/fixtures/sample.png'), filename: 'sample.png')
+      item.image.attach(io: File.open('spec/fixtures/sample.png'), filename: 'sample.png')
     end
 
     trait :sold_out do
