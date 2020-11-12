@@ -8,7 +8,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       const imageElement = document.createElement('div')
       imageElement.setAttribute('id', "image-element")
       let imageElementNum = document.querySelectorAll('#image-element').length
-
+      
       // 表示する画像を生成
       const blobImage = document.createElement('img')
       blobImage.setAttribute('src', blob)
@@ -18,7 +18,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       // ファイル選択ボタンを生成
       const inputHTML = document.createElement('input')
       inputHTML.setAttribute('class', `item-image_${imageElementNum}`)
-      inputHTML.setAttribute('name', 'item[images][]')
+      inputHTML.setAttribute('name', 'item_form[images][]')
       inputHTML.setAttribute('type', 'file')
 
       // 生成したHTMLの要素をブラウザに表示させる

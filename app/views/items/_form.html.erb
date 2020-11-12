@@ -53,14 +53,6 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
-
-        <div class="weight-bold-text">
-          タグ
-          <span class="form-any">任意</span>
-        </div>
-        <%= f.text_area :tag_name, class:"items-text", id:"tag-name-form", placeholder:"タグ名" %>
-
-
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>

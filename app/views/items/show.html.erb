@@ -27,6 +27,10 @@
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
     <% else %>
+
+      <%= link_to '購入画面に進む（新しくカードを登録する）', item_transactions_path(item_id: @item.id) ,class:"item-red-btn"%>
+      <%= link_to '購入画面に進む（カード登録済み）', purchase_confirm_item_path(item_id: @item.id) ,class:"item-red-btn"%>
+      
     <% if @item.item_transaction == nil %>
     <%= link_to '購入画面に進む', item_transactions_path(item_id: @item.id) ,class:"item-red-btn"%>
     <% end %>
@@ -43,6 +47,10 @@
         <tr>
           <th class="detail-item">カテゴリー</th>
           <td class="detail-value"><%= @item.category.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">タグ</th>
+          <td class="detail-value"><%= @item.tags&.first&.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>

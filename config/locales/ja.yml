@@ -27,6 +27,8 @@ ja:
    city: 市区町村
    addresses: 番地
    phone_number: 電話番号
+   images: 画像
+   price: 販売価格
 
 #  errors:
 #     format: “%{attribute}%{message}”
